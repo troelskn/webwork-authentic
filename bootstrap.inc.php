@@ -2,19 +2,19 @@
 require_once 'users.inc.php';
 
 // routes
-$GLOBALS['ROUTES']['~^(GET|POST)/users/sign_in$~'] = "authoriser/create_session";
-$GLOBALS['ROUTES']['~^/users/sign_out$~'] = "authoriser/delete_session";
+$GLOBALS['ROUTES']['~^(GET|POST)/users/sign_in$~'] = "authentic/create_session";
+$GLOBALS['ROUTES']['~^/users/sign_out$~'] = "authentic/delete_session";
 
-$GLOBALS['ROUTES']['~^POST/users/password$~'] = "authoriser/new_password_reset"; // TODO
-$GLOBALS['ROUTES']['~^GET/users/password/reset$~'] = "authoriser/new_password_reset"; // TODO
-$GLOBALS['ROUTES']['~^GET/users/password/fulfil$~'] = "authoriser/fulfil_password_reset"; // TODO
-$GLOBALS['ROUTES']['~^PUT/users/password$~'] = "authoriser/fulfil_password_reset"; // TODO
+$GLOBALS['ROUTES']['~^POST/users/password$~'] = "authentic/new_password_reset"; // TODO
+$GLOBALS['ROUTES']['~^GET/users/password/reset$~'] = "authentic/new_password_reset"; // TODO
+$GLOBALS['ROUTES']['~^GET/users/password/fulfil$~'] = "authentic/fulfil_password_reset"; // TODO
+$GLOBALS['ROUTES']['~^PUT/users/password$~'] = "authentic/fulfil_password_reset"; // TODO
 
-$GLOBALS['ROUTES']['~^POST/users$~'] = "authoriser/create_user";
-$GLOBALS['ROUTES']['~^GET/users/sign_up$~'] = "authoriser/create_user";
-$GLOBALS['ROUTES']['~^GET/users/edit$~'] = "authoriser/edit_user"; // TODO
-$GLOBALS['ROUTES']['~^PUT/users$~'] = "authoriser/edit_user"; // TODO
-$GLOBALS['ROUTES']['~^DELETE/users$~'] = "authoriser/edit_user"; // TODO
+$GLOBALS['ROUTES']['~^POST/users$~'] = "authentic/create_user";
+$GLOBALS['ROUTES']['~^GET/users/sign_up$~'] = "authentic/create_user";
+$GLOBALS['ROUTES']['~^GET/users/edit$~'] = "authentic/edit_user"; // TODO
+$GLOBALS['ROUTES']['~^PUT/users$~'] = "authentic/edit_user"; // TODO
+$GLOBALS['ROUTES']['~^DELETE/users$~'] = "authentic/edit_user"; // TODO
 
 // url helpers
 function sign_in_url() {

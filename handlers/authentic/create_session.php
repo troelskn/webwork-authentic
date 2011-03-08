@@ -2,7 +2,8 @@
 if (request()->isPost()) {
   if (authorise_user_by_credentials(request()->body('email'), request()->body('password'))) {
     flash_message("Logged in");
-    response()->seeOther(request()->body('redirect_to', root_url()));
+    $redirect_to = request()->body('redirect_to') ?: root_url();
+    response()->seeOther($redirect_to);
   }
 }
 

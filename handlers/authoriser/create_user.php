@@ -1,12 +1,13 @@
 <?php
 if (request()->isPost()) {
   $user = db()->users->load(request()->body('user'));
-  if (db()->users->insert($user)) {
+  if ($user_id = db()->users->insert($user)) {
     flash_message("Account created");
+    postman()->deliver('signed_up', array('user_id' => $user_id));
     response()->seeOther(root_url());
   }
 } else {
-  $user = db()->users->load(array());
+  $user = db()->users->create();
 }
 
 echo html_form_tag('post', new_registration_url('post'));

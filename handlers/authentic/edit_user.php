@@ -1,7 +1,7 @@
 <?php
 require_valid_user();
 $user = current_user();
-if (request()->isPost()) {
+if (request()->isPut()) {
   $fields = request()->body('user');
   $user->email = $fields['email'];
   if ($fields['password']) {

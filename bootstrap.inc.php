@@ -12,7 +12,7 @@ $GLOBALS['ROUTES']['~^PUT/users/password$~'] = "authentic/fulfil_password_reset"
 
 $GLOBALS['ROUTES']['~^POST/users$~'] = "authentic/create_user";
 $GLOBALS['ROUTES']['~^GET/users/sign_up$~'] = "authentic/create_user";
-$GLOBALS['ROUTES']['~^GET/users/edit$~'] = "authentic/edit_user"; // TODO
+$GLOBALS['ROUTES']['~^GET/users/edit$~'] = "authentic/edit_user";
 $GLOBALS['ROUTES']['~^PUT/users$~'] = "authentic/edit_user"; // TODO
 $GLOBALS['ROUTES']['~^DELETE/users$~'] = "authentic/edit_user"; // TODO
 

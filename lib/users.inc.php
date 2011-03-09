@@ -1,8 +1,5 @@
 <?php
 class UsersGateway extends pdoext_TableGateway {
-  function __construct($db) {
-    parent::__construct('users', $db);
-  }
   function load($row) {
     if (is_array($row)) {
       return new User($row, $this->tablename);
@@ -25,8 +22,8 @@ class UsersGateway extends pdoext_TableGateway {
 
 class User extends pdoext_DatabaseRecord {
   function setPassword($value) {
-    $this->_row['password_salt'] = md5(rand());
-    $this->_row['encrypted_password'] = sha1($this->password_salt . $value);
+    $this->_data['password_salt'] = md5(rand());
+    $this->_data['encrypted_password'] = sha1($this->password_salt . $value);
   }
   function checkPassword($value) {
     return $this->encrypted_password == sha1($this->password_salt . $value);

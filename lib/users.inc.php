@@ -1,10 +1,5 @@
 <?php
 class UsersGateway extends pdoext_TableGateway {
-  function load($row) {
-    if (is_array($row)) {
-      return new User($row, $this->tablename);
-    }
-  }
   protected function validate($data) {
     if (!preg_match('~[^@]+@[^@]+\.[^@]{2,}~', $data->email)) {
       $data->_errors[] = "You must enter a valid email address";

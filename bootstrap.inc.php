@@ -1,6 +1,4 @@
 <?php
-require_once 'users.inc.php';
-
 // routes
 $GLOBALS['ROUTES']['~^(GET|POST)/users/sign_in$~'] = "authentic/create_session";
 $GLOBALS['ROUTES']['~^/users/sign_out$~'] = "authentic/delete_session";

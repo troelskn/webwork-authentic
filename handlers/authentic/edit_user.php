@@ -8,7 +8,7 @@ if (request()->isPut()) {
     $user->password = $fields['password'];
     $user->password_repeat = $fields['password_repeat'];
   }
-  if (db()->users->update($user)) {
+  if (authentic_users()->update($user)) {
     flash_message("Profile updated");
     response()->seeOther(root_url());
   }

@@ -24,26 +24,3 @@ class User extends pdoext_DatabaseRecord {
     return $this->encrypted_password == sha1($this->password_salt . $value);
   }
 }
-
-function authorise_user_by_credentials($email, $password) {
-  $user = db()->users->fetch(array('email' => $email));
-  if ($user && $user->checkPassword($password)) {
-    session()->set('current_user_id', $user->id);
-    $GLOBALS['current_user'] = $user;
-    return true;
-  }
-}
-
-function current_user() {
-  if (!array_key_exists('current_user', $GLOBALS)) {
-    $id = session()->get('current_user_id');
-    $GLOBALS['current_user'] = $id ? db()->users->find($id) : null;
-  }
-  return $GLOBALS['current_user'];
-}
-
-function require_valid_user() {
-  if (!current_user()) {
-    throw new http_Unauthorized();
-  }
-}

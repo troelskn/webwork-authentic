@@ -4,8 +4,6 @@ function authentic_users() {
 }
 
 function authorise_user_by_credentials($login, $password) {
-  debug($GLOBALS['AUTHENTIC']);
-  debug(get_class(authentic_users()));
   $user = authentic_users()->fetch(array($GLOBALS['AUTHENTIC']['login_column'] => $login));
   if ($user && $user->checkPassword($password)) {
     session()->set('current_user_id', $user->id);

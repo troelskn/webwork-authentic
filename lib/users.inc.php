@@ -4,7 +4,7 @@ class UsersGateway extends pdoext_TableGateway {
     if (!preg_match('~[^@]+@[^@]+\.[^@]{2,}~', $data->email)) {
       $data->_errors[] = "You must enter a valid email address";
     }
-    if (!$data->checkPassword($data->password_repeat)) {
+    if ($data->password_repeat != null && !$data->checkPassword($data->password_repeat)) {
       $data->_errors[] = "You must enter the same value for password and password repeat";
     }
   }
@@ -22,5 +22,8 @@ class User extends pdoext_DatabaseRecord {
   }
   function checkPassword($value) {
     return $this->encrypted_password == sha1($this->password_salt . $value);
+  }
+  function generateResetPasswordToken() {
+    $this->reset_password_token = md5(rand());
   }
 }

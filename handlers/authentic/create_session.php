@@ -34,6 +34,9 @@ if (request()->isPost()):
 <p>
   <input type="submit" value="Sign in" />
 </p>
+<p>
+   <?php echo html_link(new_password_url(), 'Forgot your password?'); ?>
+</p>
 <?php
   echo html_form_tag_end();
 ?>

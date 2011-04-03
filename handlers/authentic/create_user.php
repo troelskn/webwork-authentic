@@ -10,7 +10,7 @@ if (request()->isPost()) {
   $user = authentic_users()->create();
 }
 
-echo html_form_tag('post', new_registration_url('post'));
+echo html_form_tag('post', users_url());
 foreach ($user->_errors as $error): ?>
 <p class="error"><?php e($error); ?></p>
 <?php endforeach; ?>

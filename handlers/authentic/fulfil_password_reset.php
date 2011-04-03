@@ -20,7 +20,7 @@ if (request()->isPut()) {
 }
 
 echo "<p>Enter your new password to complete the recovery process.</p>";
-echo html_form_tag('put', url(fulfil_password_url('put'), request()->query()));
+echo html_form_tag('put', url(passwords_url(), request()->query()));
 foreach ($user->_errors as $error): ?>
 <p class="error"><?php e($error); ?></p>
 <?php endforeach; ?>

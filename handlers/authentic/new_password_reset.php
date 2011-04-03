@@ -14,7 +14,7 @@ if (request()->isPost()) {
   response()->seeOther(sign_in_url());
 }
 
-echo html_form_tag('post', new_password_url('post'));
+echo html_form_tag('post', passwords_url());
 ?>
 <p>
   Enter your email address to begin the recovery of your account.

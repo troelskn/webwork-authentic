@@ -14,7 +14,7 @@ if (request()->isPut()) {
   }
 }
 
-echo html_form_tag('put', edit_registration_url('put'));
+echo html_form_tag('put', users_url());
 foreach ($user->_errors as $error): ?>
 <p class="error"><?php e($error); ?></p>
 <?php endforeach; ?>

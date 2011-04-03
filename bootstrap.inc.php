@@ -32,44 +32,22 @@ function sign_out_url() {
   return root_url()."users/sign_out";
 }
 
-function new_password_url($method = 'GET') {
-  switch (strtoupper($method)) {
-  case 'POST':
-    return root_url()."users/password";
-  case 'GET':
-    return root_url()."users/password/reset";
-  }
-  throw new Exception("No URL for $method");
+function passwords_url() {
+  return root_url()."users/password";
 }
 
-function fulfil_password_url($method = 'GET') {
-  switch (strtoupper($method)) {
-  case 'PUT':
-    return root_url()."users/password";
-  case 'GET':
-    return root_url()."users/password/fulfil";
-  }
-  throw new Exception("No URL for $method");
+function new_password_url() {
+  return root_url()."users/password/reset";
 }
 
-function new_registration_url($method = 'GET') {
-  switch (strtoupper($method)) {
-  case 'POST':
-    return root_url()."users";
-  case 'GET':
-    return root_url()."users/sign_up";
-  }
-  throw new Exception("No URL for $method");
+function fulfil_password_url() {
+  return root_url()."users/password/fulfil";
 }
 
-function edit_registration_url($method = 'GET') {
-  switch (strtoupper($method)) {
-  case 'PUT':
-    return root_url()."users";
-  case 'GET':
-    return root_url()."users/edit";
-  case 'DELETE':
-    return root_url()."users";
-  }
-  throw new Exception("No URL for $method");
+function users_url() {
+  return root_url()."users";
+}
+
+function sign_up_url() {
+  return root_url()."users/sign_up";
 }

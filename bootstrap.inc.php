@@ -51,3 +51,7 @@ function users_url() {
 function sign_up_url() {
   return root_url()."users/sign_up";
 }
+
+function edit_user_url() {
+  return root_url()."users/edit";
+}

@@ -3,8 +3,10 @@ function authentic_users() {
   return db()->table($GLOBALS['AUTHENTIC']['table']);
 }
 
-function authorise_user_by_credentials($login, $password) {
-  $user = authentic_users()->fetch(array($GLOBALS['AUTHENTIC']['login_column'] => $login));
+function authorise_user_by_credentials() {
+  $args = func_get_args();
+  $password = array_pop($args);
+  $user = authentic_users()->fetch(array_combine($GLOBALS['AUTHENTIC']['login_columns'], $args));
   if ($user && $user->checkPassword($password)) {
     session()->set('current_user_id', $user->id);
     $GLOBALS['current_user'] = $user;

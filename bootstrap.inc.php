@@ -4,8 +4,8 @@ require_once 'authentic_globals.inc.php';
 if (!isset($GLOBALS['AUTHENTIC']['table'])) {
   $GLOBALS['AUTHENTIC']['table'] = 'users';
 }
-if (!isset($GLOBALS['AUTHENTIC']['login_column'])) {
-  $GLOBALS['AUTHENTIC']['login_column'] = 'email';
+if (!isset($GLOBALS['AUTHENTIC']['login_columns'])) {
+  $GLOBALS['AUTHENTIC']['login_columns'] = array('email');
 }
 
 // routes

@@ -27,6 +27,10 @@ class User extends pdoext_DatabaseRecord {
       $this->_data['password_salt'] = md5(rand());
       $this->_data['encrypted_password'] = sha1($this->password_salt . $value);
       break;
+    case 'sha1-salted-tail':
+      $this->_data['password_salt'] = md5(rand());
+      $this->_data['encrypted_password'] = 'sha1-tail:' . sha1($value . $this->password_salt);
+      break;
     case 'sha1':
       $this->_data['password_salt'] = null;
       $this->_data['encrypted_password'] = sha1($this->password_salt . $value);
@@ -34,6 +38,10 @@ class User extends pdoext_DatabaseRecord {
     case 'md5-salted':
       $this->_data['password_salt'] = md5(rand());
       $this->_data['encrypted_password'] = 'md5:' . md5($this->password_salt . $value);
+      break;
+    case 'md5-salted-tail':
+      $this->_data['password_salt'] = md5(rand());
+      $this->_data['encrypted_password'] = 'md5-tail:' . md5($value.$this->password_salt);
       break;
     case 'md5':
       $this->_data['password_salt'] = null;
@@ -44,7 +52,7 @@ class User extends pdoext_DatabaseRecord {
     }
   }
   function checkPassword($value) {
-    preg_match('/^(sha1|md5|crypt):(.*)$/', $this->encrypted_password, $reg);
+    preg_match('/^(sha1|sha1-tail|md5|md5-tail|crypt):(.*)$/', $this->encrypted_password, $reg);
     if (isset($reg[1])) {
       $cipher = $reg[1];
       $encrypted_password = $reg[2];
@@ -56,8 +64,12 @@ class User extends pdoext_DatabaseRecord {
     switch ($cipher) {
     case 'sha1':
       return $encrypted_password === sha1($this->password_salt . $value);
+    case 'sha1-tail':
+      return $encrypted_password === sha1($value . $this->password_salt);
     case 'md5':
       return $encrypted_password === md5($this->password_salt . $value);
+    case 'md5-tail':
+      return $encrypted_password === md5($value . $this->password_salt);
     case 'crypt':
       return $encrypted_password === crypt($value, $encrypted_password);
     }

@@ -12,7 +12,7 @@ function authorise_user_by_credentials() {
     $GLOBALS['current_user'] = $user;
     if (in_array('last_logged_in_at', authentic_users()->getColumnNames())) {
       $user->lastLoggedInAt = date("Y-m-d H:i:s");
-      if (is_callable($user, 'onlyValidateCredentialsOnSave')) {
+      if (is_callable(array($user, 'onlyValidateCredentialsOnSave'))) {
         $user->onlyValidateCredentialsOnSave();
       }
       authentic_users()->saveOrFail($user);

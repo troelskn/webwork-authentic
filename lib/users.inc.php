@@ -1,6 +1,6 @@
 <?php
 class UsersGateway extends pdoext_TableGateway {
-  protected function validate($data) {
+  protected function validate($data, $rules = array()) {
     if (!preg_match('~[^@]+@[^@]+\.[^@]{2,}~', $data->email)) {
       $data->_errors[] = "You must enter a valid email address";
     }
@@ -8,7 +8,7 @@ class UsersGateway extends pdoext_TableGateway {
       $data->_errors[] = "You must enter the same value for password and password repeat";
     }
   }
-  protected function validateInsert($data) {
+  protected function validateInsert($data, $rules = array()) {
     if ($this->fetch(array('email' => $data->email))) {
       $data->_errors[] = "A user already exists with that email address";
     }

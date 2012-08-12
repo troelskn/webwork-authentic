@@ -76,6 +76,6 @@ class User extends pdoext_DatabaseRecord {
     throw new Exception("Unable to check password");
   }
   function generateResetPasswordToken() {
-    $this->reset_password_token = md5(rand());
+    $this->reset_password_token = md5(mt_rand().":".microtime(true));
   }
 }

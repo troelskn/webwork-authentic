@@ -18,6 +18,11 @@ class UsersGateway extends pdoext_TableGateway {
 class User extends pdoext_DatabaseRecord {
   protected $preferredCipher = 'sha1-salted';
   function setPassword($value) {
+    if ($value === null) {
+      $this->_data['password_salt'] = $value;
+      $this->_data['encrypted_password'] = $value;
+      return;
+    }
     switch ($this->preferredCipher) {
     case 'crypt':
       $this->_data['password_salt'] = null;
